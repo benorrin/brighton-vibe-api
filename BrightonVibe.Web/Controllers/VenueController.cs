@@ -29,10 +29,10 @@ public class VenueController : ControllerBase
         return Ok(venueDto);
     }
     
-    [HttpGet("type/{venueType}")]
-    public async Task<IActionResult> GetVenuesByType(VenueType venueType)
+    [HttpGet("type/{venueCategory}")]
+    public async Task<IActionResult> GetVenuesByType(VenueCategory venueCategory)
     {
-        var venues = await _venueApplicationService.GetVenuesByTypeAsync(venueType);
+        var venues = await _venueApplicationService.GetVenuesByTypeAsync(venueCategory);
 
         if (venues == null || !venues.Any())
         {

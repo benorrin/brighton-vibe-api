@@ -17,8 +17,8 @@ namespace BrightonVibe.Data.Entities
         public string Name { get; set; }
         
         [Required]
-        [Column("type")]
-        public VenueType Type { get; set; }
+        [Column("category")]
+        public VenueCategory Category { get; set; }
         
         [Required]
         [MaxLength(200)]

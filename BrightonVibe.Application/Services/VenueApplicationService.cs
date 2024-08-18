@@ -52,7 +52,7 @@ public class VenueApplicationService
         {
             Id = venue.Id,
             Name = venue.Name,
-            Type = venue.Type,
+            Category = venue.Category,
             VenueImages = venueImages,
             VenueOpeningHours = venueOpeningHours,
             Address = venue.Address,
@@ -64,9 +64,9 @@ public class VenueApplicationService
         };
     }
     
-    public async Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueType venueType)
+    public async Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueCategory venueCategory)
     {
-        var venues = await _venueRepository.GetVenuesByTypeAsync(venueType);
+        var venues = await _venueRepository.GetVenuesByTypeAsync(venueCategory);
 
         return venues;
     }

@@ -1,6 +1,6 @@
 ﻿namespace BrightonVibe.Domain.Enums;
 
-public enum VenueType
+public enum VenueCategory
 {
     Bar,
     Cafe,

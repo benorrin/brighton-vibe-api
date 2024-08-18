@@ -53,11 +53,11 @@ public class VenueRepository : IVenueRepository
         });
     }
 
-    public async Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueType type)
+    public async Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueCategory category)
     {
         var venueEntities = await _context
             .Venues
-            .Where(venue => venue.Type == type)
+            .Where(venue => venue.Category == category)
             .ToListAsync();
         
         return venueEntities.Select(venueEntity => new Venue

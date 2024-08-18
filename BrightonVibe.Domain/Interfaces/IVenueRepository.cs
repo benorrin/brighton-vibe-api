@@ -7,5 +7,5 @@ public interface IVenueRepository
 {
     Task<Venue?> GetVenueByIdAsync(Guid id);
     Task<IEnumerable<Venue>> GetAllVenuesAsync();
-    Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueType type);
+    Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueCategory category);
 }
