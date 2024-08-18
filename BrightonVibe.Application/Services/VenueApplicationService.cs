@@ -21,6 +21,18 @@ public class VenueApplicationService
         _venueImageRepository = venueImageRepository;
     }
 
+    /// <summary>
+    /// Asynchronously retrieves the details of a venue by its unique identifier.
+    /// 
+    /// This method fetches the venue's information and associated images from the repository. 
+    /// If the venue with the specified ID does not exist, it throws a <see cref="VenueNotFoundException"/>.
+    /// The venue images are collected and included in the result. If there are no images associated 
+    /// with the venue, the returned list of images in the <see cref="VenueDto"/> will be empty but not null.
+    /// 
+    /// <param name="venueId">The unique identifier of the venue to retrieve.</param>
+    /// <returns>A <see cref="VenueDto"/> containing the venue details and associated images.</returns>
+    /// <exception cref="VenueNotFoundException">Thrown when a venue with the specified ID is not found.</exception>
+    /// </summary>
     public async Task<VenueDto> GetVenueByIdAsync(Guid venueId)
     {
         var venue = await _venueRepository.GetVenueByIdAsync(venueId);
