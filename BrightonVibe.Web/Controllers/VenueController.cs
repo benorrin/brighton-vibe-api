@@ -26,11 +26,6 @@ public class VenueController : ControllerBase
     { 
         var venueDto = await _venueApplicationService.GetVenueByIdAsync(id);
         
-        if (venueDto is null)
-        {
-            return NotFound();
-        }
-        
         return Ok(venueDto);
     }
     
