@@ -2,6 +2,7 @@
 using BrightonVibe.Domain.Entities;
 using BrightonVibe.Domain.Interfaces;
 using BrightonVibe.Application.DTOs;
+using BrightonVibe.Application.Exceptions;
 using BrightonVibe.Domain.Enums;
 using BrightonVibe.Domain.Services;
 
@@ -17,13 +18,13 @@ public class VenueApplicationService
         _venueRepository = venueRepository;
     }
 
-    public async Task<Venue> GetVenueByIdAsync(Guid id)
+    public async Task<Venue> GetVenueByIdAsync(Guid venueId)
     {
-        var venue = await _venueRepository.GetVenueByIdAsync(id);
+        var venue = await _venueRepository.GetVenueByIdAsync(venueId);
         
         if (venue is null)
         {
-            return null;
+            throw new VenueNotFoundException(venueId);
         }
         
         return venue;

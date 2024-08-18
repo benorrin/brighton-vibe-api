@@ -3,6 +3,7 @@ using BrightonVibe.Data;
 using BrightonVibe.Data.Repositories;
 using BrightonVibe.Domain.Interfaces;
 using BrightonVibe.Domain.Services;
+using BrightonVibe.Web;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add Swagger services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add a custom exception handler
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 // Configure CORS to allow any origin
 builder.Services.AddCors(options =>
