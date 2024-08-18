@@ -12,10 +12,12 @@ public class VenueApplicationService
 {
     private readonly IVenueRepository _venueRepository;
     private readonly IVenueImageRepository _venueImageRepository;
+    private readonly IVenueOpeningHourRepository _venueOpeningHourRepository;
 
     public VenueApplicationService(
         IVenueRepository venueRepository,
-        IVenueImageRepository venueImageRepository)
+        IVenueImageRepository venueImageRepository,
+        IVenueOpeningHourRepository venueOpeningHourRepository)
     {
         _venueRepository = venueRepository;
         _venueImageRepository = venueImageRepository;
@@ -43,6 +45,8 @@ public class VenueApplicationService
         }
 
         var venueImages = await _venueImageRepository.GetVenueImagesByVenueId(venueId);
+
+        var venueOpeningHours = await _venueOpeningHourRepository.GetVenueOpeningHoursByVenueId(venueId);
         
         return new VenueDto
         {
@@ -50,6 +54,7 @@ public class VenueApplicationService
             Name = venue.Name,
             Type = venue.Type,
             VenueImages = venueImages,
+            VenueOpeningHours = venueOpeningHours,
             Address = venue.Address,
             PhoneNumber = venue.PhoneNumber,
             EmailAddress = venue.EmailAddress,

@@ -9,6 +9,7 @@ public class VenueDto
     public string Name { get; init; }
     public VenueType Type { get; init; }
     public IEnumerable<VenueImage?> VenueImages { get; init; }
+    public IEnumerable<VenueOpeningHour?> VenueOpeningHours { get; init; }
     public string Address { get; init; }
     public string? PhoneNumber { get; init; }
     public string? EmailAddress { get; init; }
