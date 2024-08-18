@@ -26,7 +26,29 @@ public class VenueApplicationService
     public async Task<VenueDto> GetVenueByIdAsync(Guid id)
     {
         var venue = await _venueService.GetVenueByIdAsync(id);
-        return _mapper.Map<VenueDto>(venue);
+
+        // Check if the venue exists
+        if (venue == null)
+        {
+            // Handle the case where the venue is not found (return null, throw an exception, etc.)
+            // Example: throw new NotFoundException("Venue not found");
+            return null; // Adjust according to your error handling strategy
+        }
+        
+        var venueDto = new VenueDto
+        {
+            Id = venue.Id,
+            Name = venue.Name,
+            Type = venue.Type,
+            Address = venue.Address,
+            PhoneNumber = venue.PhoneNumber,
+            EmailAddress = venue.EmailAddress,
+            Website = venue.Website,
+            Instagram = venue.Instagram,
+            Facebook = venue.Facebook
+        };
+        
+        return venueDto;
     }
 
     public async Task<IEnumerable<VenueDto>> GetAllVenuesAsync()

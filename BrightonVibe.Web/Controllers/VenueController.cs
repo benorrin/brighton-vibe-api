@@ -11,25 +11,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 [ApiController]
-[Route("venue")]
+[Route("venues")]
 public class VenueController : ControllerBase
 {
     private readonly VenueApplicationService _venueApplicationService;
-    private readonly string _uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
 
     public VenueController(VenueApplicationService venueService)
     {
         _venueApplicationService = venueService;
-        
-        // Ensure the upload directory exists
-        if (!Directory.Exists(_uploadPath))
-        {
-            Directory.CreateDirectory(_uploadPath);
-        }
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetVenue(Guid id)
+    public async Task<IActionResult> GetVenueByIdAsync(Guid id)
     { 
         var venueDto = await _venueApplicationService.GetVenueByIdAsync(id);
         

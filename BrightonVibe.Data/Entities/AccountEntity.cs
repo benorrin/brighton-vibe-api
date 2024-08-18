@@ -1,9 +1,21 @@
-﻿namespace BrightonVibe.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BrightonVibe.Data.Entities;
 
 public class AccountEntity
 {
-    public required Guid Id { get; set; }
-    public required string EmailAddress { get; set; }
-    public required string PasswordHash { get; set; }
-    public required DateTime CreatedAt { get; set; }
+    [Required]
+    public Guid Id { get; set; }
+    
+    [Required]
+    [EmailAddress]
+    [MaxLength(255)]
+    public string EmailAddress { get; set; }
+    
+    [Required]
+    [MaxLength(255)]
+    public string PasswordHash { get; set; }
+    
+    [Required]
+    public DateTime CreatedAt { get; set; }
 }

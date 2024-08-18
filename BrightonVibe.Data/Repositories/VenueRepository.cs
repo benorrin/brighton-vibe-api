@@ -20,12 +20,29 @@ public class VenueRepository : IVenueRepository
 
     public async Task<Venue> GetVenueByIdAsync(Guid id)
     {
+        // Fetch the venue entity from the database
         var venueEntity = await _context.Venues.FindAsync(id);
         if (venueEntity == null)
         {
-            return null;
+            return null; // Handle the not-found scenario appropriately
         }
-        return _mapper.Map<Venue>(venueEntity);
+
+        // Manually map the fetched entity to a new Venue instance
+        var venue = new Venue(
+            name: venueEntity.Name,
+            type: venueEntity.Type,
+            address: venueEntity.Address
+        )
+        {
+            Id = venueEntity.Id,
+            PhoneNumber = venueEntity.PhoneNumber,
+            EmailAddress = venueEntity.EmailAddress,
+            Website = venueEntity.Website,
+            Instagram = venueEntity.Instagram,
+            Facebook = venueEntity.Facebook
+        };
+
+        return venue;
     }
 
     public async Task<IQueryable<Venue>> GetAllVenuesAsync()

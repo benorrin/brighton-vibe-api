@@ -19,6 +19,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configure CORS to allow any origin
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 // Dependency Injection for application services and domain services
 builder.Services.AddScoped<AccountApplicationService>();
 builder.Services.AddScoped<VenueApplicationService>();
@@ -50,15 +62,13 @@ else
 
 app.UseStaticFiles();
 app.UseRouting();
+
+// Use CORS policy that allows any origin
+app.UseCors("AllowAnyOrigin");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    dbContext.Database.Migrate();
-}
 
 app.Run();
