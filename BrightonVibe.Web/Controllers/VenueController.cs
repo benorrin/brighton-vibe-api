@@ -21,10 +21,10 @@ public class VenueController : ControllerBase
         _venueApplicationService = venueService;
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetVenueByIdAsync(Guid id)
+    [HttpGet("{venueSlug}")]
+    public async Task<IActionResult> GetVenueByIdAsync(string venueSlug)
     { 
-        var venueDto = await _venueApplicationService.GetVenueByIdAsync(id);
+        var venueDto = await _venueApplicationService.GetVenueBySlugAsync(venueSlug);
         
         return Ok(venueDto);
     }

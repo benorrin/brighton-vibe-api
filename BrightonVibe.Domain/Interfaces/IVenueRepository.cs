@@ -5,7 +5,7 @@ namespace BrightonVibe.Domain.Interfaces;
 
 public interface IVenueRepository
 {
-    Task<Venue?> GetVenueByIdAsync(Guid id);
+    Task<Venue?> GetVenueBySlugAsync(string venueSlug);
     Task<IEnumerable<Venue>> GetAllVenuesAsync();
     Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueCategory category);
 }

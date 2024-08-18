@@ -1,6 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using BrightonVibe.Data.Entities;
+using BrightonVibe.Domain.Enums; // Ensure this namespace is included for VenueCategory
 
 namespace BrightonVibe.Data
 {

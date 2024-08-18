@@ -16,9 +16,11 @@ public class VenueRepository : IVenueRepository
         _context = context;
     }
 
-    public async Task<Venue?> GetVenueByIdAsync(Guid id)
+    public async Task<Venue?> GetVenueBySlugAsync(string venueSlug)
     {
-        var venueEntity = await _context.Venues.FindAsync(id);
+        var venueEntity = await _context
+            .Venues
+            .SingleOrDefaultAsync(venue => venue.Slug == venueSlug);
         
         if (venueEntity is null)
         {

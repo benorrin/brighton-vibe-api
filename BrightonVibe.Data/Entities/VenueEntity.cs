@@ -13,6 +13,11 @@ namespace BrightonVibe.Data.Entities
         
         [Required]
         [MaxLength(100)]
+        [Column("slug")]
+        public string Slug { get; init; }
+        
+        [Required]
+        [MaxLength(100)]
         [Column("name")]
         public string Name { get; init; }
         
@@ -25,7 +30,7 @@ namespace BrightonVibe.Data.Entities
         public string Summary { get; init; }
         
         [Required]
-        [Column("Description")]
+        [Column("description")]
         public string Description { get; init; }
         
         [Required]
