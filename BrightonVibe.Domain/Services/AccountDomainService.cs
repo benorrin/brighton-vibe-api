@@ -3,11 +3,11 @@ using BrightonVibe.Domain.Interfaces;
 
 namespace BrightonVibe.Domain.Services
 {
-    public class AccountService : IAccountService
+    public class AccountDomainService : IAccountDomainService
     {
         private readonly IAccountRepository _accountRepository;
 
-        public AccountService(IAccountRepository accountRepository)
+        public AccountDomainService(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
         }

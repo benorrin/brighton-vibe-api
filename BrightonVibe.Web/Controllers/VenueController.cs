@@ -60,40 +60,4 @@ public class VenueController : ControllerBase
         return Ok(venues);
     }
 
-    [Authorize]
-    [HttpPost]
-    public async Task<IActionResult> CreateVenue([FromBody] VenueDto venueDto)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        await _venueApplicationService.AddVenueAsync(venueDto);
-        
-        return CreatedAtAction(nameof(GetVenue), new { id = venueDto.Id }, venueDto);
-    }
-
-    [Authorize]
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateVenue(Guid id, [FromBody] VenueDto venueDto)
-    {
-        if (id != venueDto.Id)
-        {
-            return BadRequest();
-        }
-        
-        await _venueApplicationService.UpdateVenueAsync(venueDto);
-        
-        return NoContent();
-    }
-
-    [Authorize]
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteVenue(Guid id)
-    {
-        await _venueApplicationService.DeleteVenueAsync(id);
-        
-        return NoContent();
-    }
 }

@@ -2,7 +2,7 @@
 
 namespace BrightonVibe.Domain.Interfaces;
 
-public interface IAccountService
+public interface IAccountDomainService
 {
     Task<Account> GetAccountByIdAsync(Guid id);
     Task CreateAccountAsync(Account account);

@@ -15,56 +15,5 @@ public class Venue
     public string? Website { get; set; }
     public string? Instagram { get; set; }
     public string? Facebook { get; set; }
-
-    public Venue(
-        string name,
-        VenueType type,
-        string address
-    )
-    {
-        Id = Guid.NewGuid();
-        Name = name;
-        Type = type;
-        Address = address;
-    }
     
-    public void UpdateName(string name)
-    {
-        Name = name;
-    }
-    
-    public void UpdateVenueType(VenueType type)
-    {
-        Type = type;
-    }
-    
-    public void UpdateAddress(string address)
-    {
-        Address = address;
-    }
-    
-    public void UpdatePhoneNumber(string phoneNumber)
-    {
-        PhoneNumber = phoneNumber;
-    }
-
-    public void UpdateEmailAddress(string emailAddress)
-    {
-        EmailAddress = emailAddress;
-    }
-
-    public void UpdateWebsite(string website)
-    {
-        Website = website;
-    }
-
-    public void UpdateInstagram(string instagram)
-    {
-        Instagram = instagram;
-    }
-
-    public void UpdateFacebook(string facebook)
-    {
-        Facebook = facebook;
-    }
 }

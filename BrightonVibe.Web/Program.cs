@@ -35,8 +35,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<AccountApplicationService>();
 builder.Services.AddScoped<VenueApplicationService>();
 
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<IVenueService, VenueService>();
+builder.Services.AddScoped<IAccountDomainService, AccountDomainService>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IVenueRepository, VenueRepository>();
