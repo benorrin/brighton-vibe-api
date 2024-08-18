@@ -21,6 +21,7 @@ public class VenueApplicationService
     {
         _venueRepository = venueRepository;
         _venueImageRepository = venueImageRepository;
+        _venueOpeningHourRepository = venueOpeningHourRepository;
     }
 
     /// <summary>

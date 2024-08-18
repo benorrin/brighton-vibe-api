@@ -35,14 +35,8 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Dependency Injection for application services and domain services
-builder.Services.AddScoped<AccountApplicationService>();
-builder.Services.AddScoped<VenueApplicationService>();
-
-builder.Services.AddScoped<IAccountDomainService, AccountDomainService>();
-
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<IVenueRepository, VenueRepository>();
+// Add dependency injection services
+builder.Services.AddDependencyInjectionServices();
 
 var app = builder.Build();
 

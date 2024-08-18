@@ -20,4 +20,7 @@ public class VenueOpeningHour
     
     [Column("closing_time")]
     public DateTime ClosingTime { get; set; }
+    
+    [Column("created_at")]
+    public DateTime CreatedAt { get; init; }
 }
