@@ -28,6 +28,9 @@ public class VenueRepository : IVenueRepository
         var venue = new Venue
         {
             Id = venueEntity.Id,
+            Name = venueEntity.Name,
+            Category = venueEntity.Category,
+            Address = venueEntity.Address,
             PhoneNumber = venueEntity.PhoneNumber,
             EmailAddress = venueEntity.EmailAddress,
             Website = venueEntity.Website,
@@ -45,6 +48,9 @@ public class VenueRepository : IVenueRepository
         return venueEntities.Select(venueEntity => new Venue
         {
             Id = venueEntity.Id,
+            Name = venueEntity.Name,
+            Category = venueEntity.Category,
+            Address = venueEntity.Address,
             PhoneNumber = venueEntity.PhoneNumber,
             EmailAddress = venueEntity.EmailAddress,
             Website = venueEntity.Website,
@@ -63,6 +69,9 @@ public class VenueRepository : IVenueRepository
         return venueEntities.Select(venueEntity => new Venue
         {
             Id = venueEntity.Id,
+            Name = venueEntity.Name,
+            Category = venueEntity.Category,
+            Address = venueEntity.Address,
             PhoneNumber = venueEntity.PhoneNumber,
             EmailAddress = venueEntity.EmailAddress,
             Website = venueEntity.Website,
