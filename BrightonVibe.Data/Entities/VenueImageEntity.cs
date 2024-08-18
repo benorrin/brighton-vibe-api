@@ -14,5 +14,7 @@ public class VenueImageEntity
     [MaxLength(100)]
     public string? ImageUrl { get; set; }
     
+    public bool Featured { get; set; }
+    
     public DateTime CreatedAt { get; set; }
 }

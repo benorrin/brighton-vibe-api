@@ -43,20 +43,13 @@ public class VenueApplicationService
         }
 
         var venueImages = await _venueImageRepository.GetVenueImagesByVenueId(venueId);
-
-        var venueImagesDto = venueImages.Select(image => new VenueImage
-        {
-            Id = image.Id,
-            ImageUrl = image.ImageUrl,
-            VenueId = image.VenueId
-        });
         
         return new VenueDto
         {
             Id = venue.Id,
             Name = venue.Name,
             Type = venue.Type,
-            VenueImages = venueImagesDto,
+            VenueImages = venueImages,
             Address = venue.Address,
             PhoneNumber = venue.PhoneNumber,
             EmailAddress = venue.EmailAddress,

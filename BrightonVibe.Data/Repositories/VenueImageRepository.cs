@@ -25,6 +25,7 @@ public class VenueImageRepository : IVenueImageRepository
             Id = venueImage.Id,
             VenueId = venueImage.VenueId,
             ImageUrl = venueImage.ImageUrl,
+            Featured = venueImage.Featured,
             CreatedAt = venueImage.CreatedAt
         });
     }
