@@ -54,6 +54,8 @@ public class VenueApplicationService
             Id = venue.Id,
             Name = venue.Name,
             Category = venue.Category,
+            Summary = venue.Summary,
+            Description = venue.Description,
             VenueImages = venueImages,
             VenueOpeningHours = venueOpeningHours,
             Address = venue.Address,
