@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BrightonVibe.Data.Entities;
+using BrightonVibe.Domain.Entities;
 
 namespace BrightonVibe.Data
 {
@@ -10,7 +11,8 @@ namespace BrightonVibe.Data
         {
         }
 
-        public DbSet<AccountEntity> Accounts { get; set; }
-        public DbSet<VenueEntity> Venues { get; set; }
+        public DbSet<AccountEntity> Accounts => Set<AccountEntity>();
+        public DbSet<VenueEntity> Venues => Set<VenueEntity>();
+        public DbSet<VenueImageEntity> VenueImages => Set<VenueImageEntity>();
     }
 }

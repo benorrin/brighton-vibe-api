@@ -11,14 +11,17 @@ namespace BrightonVibe.Application.Services;
 public class VenueApplicationService
 {
     private readonly IVenueRepository _venueRepository;
+    private readonly IVenueImageRepository _venueImageRepository;
 
     public VenueApplicationService(
-        IVenueRepository venueRepository)
+        IVenueRepository venueRepository,
+        IVenueImageRepository venueImageRepository)
     {
         _venueRepository = venueRepository;
+        _venueImageRepository = venueImageRepository;
     }
 
-    public async Task<Venue> GetVenueByIdAsync(Guid venueId)
+    public async Task<VenueDto> GetVenueByIdAsync(Guid venueId)
     {
         var venue = await _venueRepository.GetVenueByIdAsync(venueId);
         
@@ -26,8 +29,29 @@ public class VenueApplicationService
         {
             throw new VenueNotFoundException(venueId);
         }
+
+        var venueImages = await _venueImageRepository.GetVenueImagesByVenueId(venueId);
+
+        var venueImagesDto = venueImages.Select(image => new VenueImage
+        {
+            Id = image.Id,
+            ImageUrl = image.ImageUrl,
+            VenueId = image.VenueId
+        });
         
-        return venue;
+        return new VenueDto
+        {
+            Id = venue.Id,
+            Name = venue.Name,
+            Type = venue.Type,
+            VenueImages = venueImagesDto,
+            Address = venue.Address,
+            PhoneNumber = venue.PhoneNumber,
+            EmailAddress = venue.EmailAddress,
+            Website = venue.Website,
+            Instagram = venue.Instagram,
+            Facebook = venue.Facebook
+        };
     }
 
     public async Task<IEnumerable<Venue>> GetAllVenuesAsync()
