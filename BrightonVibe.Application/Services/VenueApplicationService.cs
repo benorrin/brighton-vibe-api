@@ -58,13 +58,6 @@ public class VenueApplicationService
             Facebook = venue.Facebook
         };
     }
-
-    public async Task<IEnumerable<Venue>> GetAllVenuesAsync()
-    {
-        var venues = await _venueRepository.GetAllVenuesAsync();
-
-        return venues;
-    }
     
     public async Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueType venueType)
     {

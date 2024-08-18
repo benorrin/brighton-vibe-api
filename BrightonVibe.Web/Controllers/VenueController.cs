@@ -29,19 +29,6 @@ public class VenueController : ControllerBase
         return Ok(venueDto);
     }
     
-    [HttpGet]
-    public async Task<IActionResult> GetAllVenues()
-    {
-        var venues = await _venueApplicationService.GetAllVenuesAsync();
-        
-        if (venues == null || !venues.Any())
-        {
-            return NotFound();
-        }
-        
-        return Ok(venues);
-    }
-    
     [HttpGet("type/{venueType}")]
     public async Task<IActionResult> GetVenuesByType(VenueType venueType)
     {
