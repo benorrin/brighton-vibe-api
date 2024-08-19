@@ -6,10 +6,13 @@ using BrightonVibe.Domain.Enums;
 namespace BrightonVibe.Data.Entities
 {
     [Table("venue_category")]
-    public class VenueCategory
+    public class VenueCategoryEntity
     {
         [Column("id")]
         public Guid Id { get; init; }
+        
+        [Column("slug")]
+        public string Slug { get; init; }
         
         [Required]
         [MaxLength(25)]

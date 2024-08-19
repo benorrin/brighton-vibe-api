@@ -22,6 +22,9 @@ public class ExceptionHandler : IExceptionHandler
       {
          // Venue exceptions
          VenueNotFoundException => StatusCodes.Status404NotFound,
+         
+         // VenueCategory exceptions
+         VenueCategoryNotFoundException => StatusCodes.Status404NotFound,
 
          // Default case for unhandled exceptions
          _ => StatusCodes.Status500InternalServerError
