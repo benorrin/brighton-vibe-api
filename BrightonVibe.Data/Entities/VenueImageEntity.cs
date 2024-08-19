@@ -8,24 +8,31 @@ namespace BrightonVibe.Data.Entities
     public class VenueImageEntity
     {
         [Column("id")]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
         
         [Required]
         [Column("venue_id")]
-        public Guid VenueId { get; set; }
+        public Guid VenueId { get; init; }
         
         [Url]
+        [Required]
         [MaxLength(100)]
         [Column("image_url")]
-        public string? ImageUrl { get; set; }
+        public string? ImageUrl { get; init; }
         
+        [Required]
         [Column("featured")]
-        public bool Featured { get; set; }
+        public bool Featured { get; init; }
         
+        [Required]
+        [Column("description")]
+        public string Description { get; init; }
+        
+        [Required]
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; init; }
 
         // Navigation properties
-        public VenueEntity Venue { get; set; }
+        public VenueEntity Venue { get; init; }
     }
 }

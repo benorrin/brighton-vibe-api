@@ -43,6 +43,7 @@ public class VenueRepository : IVenueRepository
                 Id = image.Id,
                 ImageUrl = image.ImageUrl,
                 Featured = image.Featured,
+                Description = image.Description,
                 CreatedAt = image.CreatedAt
             }).ToList(),
             VenueOpeningHours = venueEntity.VenueOpeningHours.Select(openingHour => new VenueOpeningHour
@@ -82,6 +83,7 @@ public class VenueRepository : IVenueRepository
                 Id = image.Id,
                 ImageUrl = image.ImageUrl,
                 Featured = image.Featured,
+                Description = image.Description,
                 CreatedAt = image.CreatedAt
             }).ToList(),
             VenueOpeningHours = venueEntity.VenueOpeningHours.Select(openingHour => new VenueOpeningHour
@@ -121,6 +123,7 @@ public class VenueRepository : IVenueRepository
                 Id = image.Id,
                 ImageUrl = image.ImageUrl,
                 Featured = image.Featured,
+                Description = image.Description,
                 CreatedAt = image.CreatedAt
             }).ToList(),
             VenueOpeningHours = venueEntity.VenueOpeningHours.Select(openingHour => new VenueOpeningHour

@@ -33,7 +33,7 @@ public class VenueApplicationService
     /// <returns>A <see cref="VenueDto"/> containing the venue details and associated images.</returns>
     /// <exception cref="VenueNotFoundException">Thrown when a venue with the specified ID is not found.</exception>
     /// </summary>
-    public async Task<VenueDto> GetVenueBySlugAsync(string venueSlug)
+    public async Task<Venue> GetVenueBySlugAsync(string venueSlug)
     {
         var venue = await _venueRepository.GetVenueBySlugAsync(venueSlug);
         
@@ -42,26 +42,7 @@ public class VenueApplicationService
             throw new VenueNotFoundException();
         }
 
-        var venueImages = await _venueImageRepository.GetVenueImagesByVenueId(venue.Id);
-
-        var venueOpeningHours = await _venueOpeningHourRepository.GetVenueOpeningHoursByVenueId(venue.Id);
-        
-        return new VenueDto
-        {
-            Id = venue.Id,
-            Name = venue.Name,
-            CategoryId = venue.CategoryId,
-            Summary = venue.Summary,
-            Description = venue.Description,
-            VenueImages = venueImages,
-            VenueOpeningHours = venueOpeningHours,
-            Address = venue.Address,
-            PhoneNumber = venue.PhoneNumber,
-            EmailAddress = venue.EmailAddress,
-            Website = venue.Website,
-            Instagram = venue.Instagram,
-            Facebook = venue.Facebook
-        };
+        return venue;
     }
     
     public async Task<IEnumerable<Venue>> GetVenuesByCategoryIdAsync(Guid venueCategoryId)
