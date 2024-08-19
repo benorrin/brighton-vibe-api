@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BrightonVibe.Domain.Enums;
 
 namespace BrightonVibe.Data.Entities
 {
@@ -22,8 +22,8 @@ namespace BrightonVibe.Data.Entities
         public string Name { get; init; }
         
         [Required]
-        [Column("category")]
-        public VenueCategory Category { get; init; }
+        [Column("category_id")]
+        public Guid CategoryId { get; init; }
         
         [Required]
         [Column("summary")]
@@ -60,5 +60,9 @@ namespace BrightonVibe.Data.Entities
         [MaxLength(100)]
         [Column("facebook")]
         public string? Facebook { get; init; }
+
+        // Navigation properties
+        public ICollection<VenueImageEntity> VenueImages { get; set; }
+        public ICollection<VenueOpeningHour> VenueOpeningHours { get; set; }
     }
 }

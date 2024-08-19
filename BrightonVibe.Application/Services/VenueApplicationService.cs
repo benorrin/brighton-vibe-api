@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using BrightonVibe.Domain.Entities;
+﻿using BrightonVibe.Domain.Entities;
 using BrightonVibe.Domain.Interfaces;
 using BrightonVibe.Application.DTOs;
 using BrightonVibe.Application.Exceptions;
-using BrightonVibe.Domain.Enums;
-using BrightonVibe.Domain.Services;
 
 namespace BrightonVibe.Application.Services;
 
@@ -53,7 +50,7 @@ public class VenueApplicationService
         {
             Id = venue.Id,
             Name = venue.Name,
-            Category = venue.Category,
+            CategoryId = venue.CategoryId,
             Summary = venue.Summary,
             Description = venue.Description,
             VenueImages = venueImages,
@@ -67,9 +64,14 @@ public class VenueApplicationService
         };
     }
     
-    public async Task<IEnumerable<Venue>> GetVenuesByTypeAsync(VenueCategory venueCategory)
+    public async Task<IEnumerable<Venue>> GetVenuesByCategoryIdAsync(Guid venueCategoryId)
     {
-        var venues = await _venueRepository.GetVenuesByTypeAsync(venueCategory);
+        var venues = await _venueRepository.GetVenuesByCategoryIdAsync(venueCategoryId);
+        
+        if (venues.Count() == 0)
+        {
+            throw new VenueNotFoundException();
+        }
 
         return venues;
     }

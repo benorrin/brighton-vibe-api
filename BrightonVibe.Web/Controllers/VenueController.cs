@@ -1,14 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using BrightonVibe.Application.DTOs;
 using BrightonVibe.Application.Services;
-using BrightonVibe.Domain.Enums;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 
 [ApiController]
 [Route("venues")]
@@ -29,15 +20,10 @@ public class VenueController : ControllerBase
         return Ok(venueDto);
     }
     
-    [HttpGet("type/{venueCategory}")]
-    public async Task<IActionResult> GetVenuesByType(VenueCategory venueCategory)
+    [HttpGet("category/{venueCategoryId:guid}")]
+    public async Task<IActionResult> GetVenuesByCategoryIdAsync(Guid venueCategoryId)
     {
-        var venues = await _venueApplicationService.GetVenuesByTypeAsync(venueCategory);
-
-        if (venues == null || !venues.Any())
-        {
-            return NotFound();
-        }
+        var venues = await _venueApplicationService.GetVenuesByCategoryIdAsync(venueCategoryId);
 
         return Ok(venues);
     }
