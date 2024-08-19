@@ -17,10 +17,10 @@ namespace BrightonVibe.Data.Entities
         public WeekDay WeekDay { get; set; }
         
         [Column("opening_time")]
-        public DateTime OpeningTime { get; set; }
+        public TimeSpan OpeningTime { get; set; }
         
         [Column("closing_time")]
-        public DateTime ClosingTime { get; set; }
+        public TimeSpan ClosingTime { get; set; }
         
         [Column("created_at")]
         public DateTime CreatedAt { get; init; }
