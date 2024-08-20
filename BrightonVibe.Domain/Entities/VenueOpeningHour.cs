@@ -7,6 +7,6 @@ public class VenueOpeningHour
     public Guid Id { get; set; }
     public Guid VenueId { get; set; }
     public WeekDay WeekDay { get; set; }
-    public TimeSpan OpeningTime { get; set; }
-    public TimeSpan ClosingTime { get; set; }
+    public TimeSpan? OpeningTime { get; set; }
+    public TimeSpan? ClosingTime { get; set; }
 }

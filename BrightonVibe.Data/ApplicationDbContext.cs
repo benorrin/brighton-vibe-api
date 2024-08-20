@@ -19,17 +19,17 @@ namespace BrightonVibe.Data
         public DbSet<VenueEntity> Venues => Set<VenueEntity>();
         public DbSet<VenueCategoryEntity> VenueCategories => Set<VenueCategoryEntity>();
         public DbSet<VenueImageEntity> VenueImages => Set<VenueImageEntity>();
-        public DbSet<VenueOpeningHour> VenueOpeningHours => Set<VenueOpeningHour>();
+        public DbSet<VenueOpeningHourEntity> VenueOpeningHours => Set<VenueOpeningHourEntity>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<VenueOpeningHour>()
+            modelBuilder.Entity<VenueOpeningHourEntity>()
                 .Property(v => v.OpeningTime)
                 .HasColumnType("time without time zone");
 
-            modelBuilder.Entity<VenueOpeningHour>()
+            modelBuilder.Entity<VenueOpeningHourEntity>()
                 .Property(v => v.ClosingTime)
                 .HasColumnType("time without time zone");
             

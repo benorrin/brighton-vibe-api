@@ -28,6 +28,7 @@ public class VenueRepository : IVenueRepository
         var venue = new Venue
         {
             Id = venueEntity.Id,
+            Slug = venueEntity.Slug,
             Name = venueEntity.Name,
             CategoryId = venueEntity.CategoryId,
             Summary = venueEntity.Summary,
@@ -68,6 +69,7 @@ public class VenueRepository : IVenueRepository
         return venueEntities.Select(venueEntity => new Venue
         {
             Id = venueEntity.Id,
+            Slug = venueEntity.Slug,
             Name = venueEntity.Name,
             CategoryId = venueEntity.CategoryId,
             Summary = venueEntity.Summary,
@@ -108,6 +110,7 @@ public class VenueRepository : IVenueRepository
         return venueEntities.Select(venueEntity => new Venue
         {
             Id = venueEntity.Id,
+            Slug = venueEntity.Slug,
             Name = venueEntity.Name,
             CategoryId = venueEntity.CategoryId,
             Summary = venueEntity.Summary,

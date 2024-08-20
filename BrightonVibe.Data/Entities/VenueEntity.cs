@@ -63,6 +63,6 @@ namespace BrightonVibe.Data.Entities
 
         // Navigation properties
         public ICollection<VenueImageEntity> VenueImages { get; set; }
-        public ICollection<VenueOpeningHour> VenueOpeningHours { get; set; }
+        public ICollection<VenueOpeningHourEntity> VenueOpeningHours { get; set; }
     }
 }

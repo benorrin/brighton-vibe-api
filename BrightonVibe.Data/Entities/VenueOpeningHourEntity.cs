@@ -5,7 +5,7 @@ using BrightonVibe.Domain.Enums;
 namespace BrightonVibe.Data.Entities
 {
     [Table("venue_opening_hours")]
-    public class VenueOpeningHour
+    public class VenueOpeningHourEntity
     {
         [Column("id")]
         public Guid Id { get; set; }
@@ -17,10 +17,10 @@ namespace BrightonVibe.Data.Entities
         public WeekDay WeekDay { get; set; }
         
         [Column("opening_time")]
-        public TimeSpan OpeningTime { get; set; }
+        public TimeSpan? OpeningTime { get; set; }
         
         [Column("closing_time")]
-        public TimeSpan ClosingTime { get; set; }
+        public TimeSpan? ClosingTime { get; set; }
         
         [Column("created_at")]
         public DateTime CreatedAt { get; init; }
