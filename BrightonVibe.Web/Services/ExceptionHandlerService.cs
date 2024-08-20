@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 
 namespace BrightonVibe.Web;
 
-public class ExceptionHandler : IExceptionHandler
+public class ExceptionHandlerService : IExceptionHandler
 {
    /// <summary>
    /// Attempts to handle an exception by setting the appropriate HTTP status code in the response.

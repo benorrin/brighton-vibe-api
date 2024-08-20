@@ -4,6 +4,7 @@ using BrightonVibe.Data.Repositories;
 using BrightonVibe.Domain.Interfaces;
 using BrightonVibe.Domain.Services;
 using BrightonVibe.Web;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add a custom exception handler
-builder.Services.AddExceptionHandler<ExceptionHandler>();
+builder.Services.AddExceptionHandler<ExceptionHandlerService>();
 
 // Configure CORS to allow any origin
 builder.Services.AddCors(options =>
@@ -51,11 +52,16 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty; // Set Swagger UI at the root of the application
     });
 }
-else
+
+app.UseExceptionHandler("/error");
+
+app.Map("/error", async (HttpContext context) =>
 {
-    // Handle errors in production
-    app.UseExceptionHandler("/Home/Error");
-}
+    var exceptionHandler = context.RequestServices.GetRequiredService<IExceptionHandler>();
+    var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+    await exceptionHandler.TryHandleAsync(context, exception, CancellationToken.None);
+});
 
 app.UseStaticFiles();
 app.UseRouting();
