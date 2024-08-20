@@ -105,6 +105,7 @@ public class VenueRepository : IVenueRepository
             .Include(venue => venue.VenueImages)
             .Include(venue => venue.VenueOpeningHours)
             .Where(venue => venue.CategoryId == venueCategoryId)
+            .OrderBy(venue => EF.Functions.Random())
             .ToListAsync();
     
         return venueEntities.Select(venueEntity => new Venue
