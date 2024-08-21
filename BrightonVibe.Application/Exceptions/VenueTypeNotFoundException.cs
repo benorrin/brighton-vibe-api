@@ -1,6 +1,6 @@
 ﻿namespace BrightonVibe.Application.Exceptions;
 
-public class VenueCategoryNotFoundException : Exception
+public class VenueTypeNotFoundException : Exception
 {
     
 }

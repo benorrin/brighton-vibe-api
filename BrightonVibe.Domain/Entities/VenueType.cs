@@ -1,6 +1,6 @@
 ﻿namespace BrightonVibe.Domain.Entities;
 
-public class VenueCategory
+public class VenueType
 {
     public Guid Id { get; set; }
     public string Slug { get; set; }

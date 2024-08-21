@@ -45,9 +45,9 @@ public class VenueApplicationService
         return venue;
     }
     
-    public async Task<IEnumerable<Venue>> GetVenuesByCategoryIdAsync(Guid venueCategoryId)
+    public async Task<IEnumerable<Venue>> GetVenuesByTypeIdAsync(Guid venueTypeId)
     {
-        var venues = await _venueRepository.GetVenuesByCategoryIdAsync(venueCategoryId);
+        var venues = await _venueRepository.GetVenuesByTypeIdAsync(venueTypeId);
         
         if (venues.Count() == 0)
         {

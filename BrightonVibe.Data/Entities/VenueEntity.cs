@@ -22,8 +22,8 @@ namespace BrightonVibe.Data.Entities
         public string Name { get; init; }
         
         [Required]
-        [Column("category_id")]
-        public Guid CategoryId { get; init; }
+        [Column("type_id")]
+        public Guid TypeId { get; init; }
         
         [Required]
         [Column("summary")]

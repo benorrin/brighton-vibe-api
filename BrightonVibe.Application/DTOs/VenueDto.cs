@@ -7,7 +7,7 @@ public class VenueDto
 {
     public Guid Id { get; init; }
     public string Name { get; init; }
-    public Guid CategoryId { get; init; }
+    public Guid TypeId { get; init; }
     public string Summary { get; init; }
     public string Description { get; init; }
     public IEnumerable<VenueImage?> VenueImages { get; init; }

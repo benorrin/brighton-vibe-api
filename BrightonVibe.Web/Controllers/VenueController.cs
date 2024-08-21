@@ -20,10 +20,10 @@ public class VenueController : ControllerBase
         return Ok(venueDto);
     }
     
-    [HttpGet("category/{venueCategoryId:guid}")]
-    public async Task<IActionResult> GetVenuesByCategoryIdAsync(Guid venueCategoryId)
+    [HttpGet("type/{venueTypeId:guid}")]
+    public async Task<IActionResult> GetVenuesByTypeIdAsync(Guid venueTypeId)
     {
-        var venues = await _venueApplicationService.GetVenuesByCategoryIdAsync(venueCategoryId);
+        var venues = await _venueApplicationService.GetVenuesByTypeIdAsync(venueTypeId);
 
         return Ok(venues);
     }

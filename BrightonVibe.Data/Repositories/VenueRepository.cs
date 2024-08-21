@@ -30,7 +30,7 @@ public class VenueRepository : IVenueRepository
             Id = venueEntity.Id,
             Slug = venueEntity.Slug,
             Name = venueEntity.Name,
-            CategoryId = venueEntity.CategoryId,
+            TypeId = venueEntity.TypeId,
             Summary = venueEntity.Summary,
             Description = venueEntity.Description,
             Address = venueEntity.Address,
@@ -71,7 +71,7 @@ public class VenueRepository : IVenueRepository
             Id = venueEntity.Id,
             Slug = venueEntity.Slug,
             Name = venueEntity.Name,
-            CategoryId = venueEntity.CategoryId,
+            TypeId = venueEntity.TypeId,
             Summary = venueEntity.Summary,
             Description = venueEntity.Description,
             Address = venueEntity.Address,
@@ -99,12 +99,12 @@ public class VenueRepository : IVenueRepository
     }
 
 
-    public async Task<IEnumerable<Venue>> GetVenuesByCategoryIdAsync(Guid venueCategoryId)
+    public async Task<IEnumerable<Venue>> GetVenuesByTypeIdAsync(Guid venueTypeId)
     {
         var venueEntities = await _context.Venues
             .Include(venue => venue.VenueImages)
             .Include(venue => venue.VenueOpeningHours)
-            .Where(venue => venue.CategoryId == venueCategoryId)
+            .Where(venue => venue.TypeId == venueTypeId)
             .ToListAsync();
     
         return venueEntities.Select(venueEntity => new Venue
@@ -112,7 +112,7 @@ public class VenueRepository : IVenueRepository
             Id = venueEntity.Id,
             Slug = venueEntity.Slug,
             Name = venueEntity.Name,
-            CategoryId = venueEntity.CategoryId,
+            TypeId = venueEntity.TypeId,
             Summary = venueEntity.Summary,
             Description = venueEntity.Description,
             Address = venueEntity.Address,

@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using BrightonVibe.Data.Entities;
-using VenueCategory = BrightonVibe.Domain.Entities.VenueCategory;
 
 namespace BrightonVibe.Data
 {
@@ -17,7 +16,7 @@ namespace BrightonVibe.Data
         
         // Venue entities
         public DbSet<VenueEntity> Venues => Set<VenueEntity>();
-        public DbSet<VenueCategoryEntity> VenueCategories => Set<VenueCategoryEntity>();
+        public DbSet<VenueTypeEntity> VenueCategories => Set<VenueTypeEntity>();
         public DbSet<VenueImageEntity> VenueImages => Set<VenueImageEntity>();
         public DbSet<VenueOpeningHourEntity> VenueOpeningHours => Set<VenueOpeningHourEntity>();
 
