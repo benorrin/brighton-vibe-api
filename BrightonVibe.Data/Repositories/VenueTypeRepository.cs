@@ -24,7 +24,7 @@ public class VenueTypeRepository : IVenueTypeRepository
     public async Task<VenueType?> GetVenueTypeByIdAsync(Guid venueTypeId)
     {
         var venueType = await _context
-            .VenueCategories
+            .VenueTypes
             .SingleOrDefaultAsync(venueType => venueType.Id == venueTypeId);
 
         if (venueType is null)
@@ -40,5 +40,30 @@ public class VenueTypeRepository : IVenueTypeRepository
             Description = venueType.Description,
             CreatedAt = venueType.CreatedAt
         };
+    }
+    
+    /// <summary>
+    /// Asynchronously retrieves a list of venue types associated with a specific venue category.
+    /// </summary>
+    /// <param name="venueCategoryId">The unique identifier of the venue category for which to fetch venue types.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains an
+    /// <see cref="IEnumerable{VenueType}"/> of venue types belonging to the specified category.
+    /// </returns>
+    public async Task<IEnumerable<VenueType>> GetVenueTypesByCategoryAsync(Guid venueCategoryId)
+    {
+        var venueTypes = await _context
+            .VenueTypes
+            .Where(venueType => venueType.VenueCategoryId == venueCategoryId)
+            .ToListAsync();
+        
+        return venueTypes.
+            Select(venueType => new VenueType
+            {
+                Id = venueType.Id,
+                Slug = venueType.Slug,
+                Name = venueType.Name,
+                Description = venueType.Description,
+                CreatedAt = venueType.CreatedAt
+            });
     }
 }

@@ -99,13 +99,18 @@ public class VenueRepository : IVenueRepository
     }
 
 
-    public async Task<IEnumerable<Venue>> GetVenuesByTypeIdAsync(Guid venueTypeId)
+    public async Task<IEnumerable<Venue>> GetVenuesByTypeIdAsync(Guid venueTypeId, int? limit = null)
     {
         var venueEntities = await _context.Venues
             .Include(venue => venue.VenueImages)
             .Include(venue => venue.VenueOpeningHours)
             .Where(venue => venue.VenueTypeId == venueTypeId)
             .ToListAsync();
+
+        if (limit.HasValue)
+        {
+            venueEntities = venueEntities.Take(limit.Value).ToList();
+        }
     
         return venueEntities.Select(venueEntity => new Venue
         {

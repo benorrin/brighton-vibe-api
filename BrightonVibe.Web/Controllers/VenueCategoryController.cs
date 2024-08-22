@@ -19,5 +19,13 @@ public class VenueCategorysController : ControllerBase
         
         return Ok(venueDto);
     }
+    
+    [HttpGet("{venueCategorySlug}/summary")]
+    public async Task<IActionResult> GetVenueCategorySummaryBySlugAsync(string venueCategorySlug)
+    { 
+        var venueDto = await _venueCategoryApplicationService.GetVenueCategorySummaryBySlugAsync(venueCategorySlug);
+        
+        return Ok(venueDto);
+    }
 
 }
