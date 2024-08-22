@@ -16,7 +16,8 @@ namespace BrightonVibe.Data
         
         // Venue entities
         public DbSet<VenueEntity> Venues => Set<VenueEntity>();
-        public DbSet<VenueTypeEntity> VenueCategories => Set<VenueTypeEntity>();
+        public DbSet<VenueCategoryEntity> VenueCategories => Set<VenueCategoryEntity>();
+        public DbSet<VenueTypeEntity> VenueTypes => Set<VenueTypeEntity>();
         public DbSet<VenueImageEntity> VenueImages => Set<VenueImageEntity>();
         public DbSet<VenueOpeningHourEntity> VenueOpeningHours => Set<VenueOpeningHourEntity>();
 
@@ -31,6 +32,11 @@ namespace BrightonVibe.Data
             modelBuilder.Entity<VenueOpeningHourEntity>()
                 .Property(v => v.ClosingTime)
                 .HasColumnType("time without time zone");
+            
+            modelBuilder.Entity<VenueTypeEntity>()
+                .HasOne(vt => vt.VenueCategory)
+                .WithMany(vc => vc.VenueTypes)
+                .HasForeignKey(vt => vt.VenueCategoryId);
             
         }
     }

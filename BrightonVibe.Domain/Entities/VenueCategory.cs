@@ -1,9 +1,8 @@
 ﻿namespace BrightonVibe.Domain.Entities;
 
-public class VenueType
+public class VenueCategory
 {
     public Guid Id { get; set; }
-    public Guid VenueCategoryId { get; set; }
     public string Slug { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
@@ -11,7 +10,7 @@ public class VenueType
 
     #region Navigation properties
 
-    public VenueCategory VenueCategory { get; set; }
+    public ICollection<VenueType> VenueTypes { get; set; } = new List<VenueType>();
 
     #endregion
 }

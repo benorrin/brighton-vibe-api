@@ -1,18 +1,13 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BrightonVibe.Domain.Enums;
 
 namespace BrightonVibe.Data.Entities;
 
-[Table("venue_type")]
-public class VenueTypeEntity
-{ 
+[Table("venue_category")]
+public class VenueCategoryEntity
+{
     [Column("id")]
     public Guid Id { get; init; }
-        
-    [Column("venue_category_id")]
-    public Guid VenueCategoryId { get; init; }
         
     [Column("slug")]
     public string Slug { get; init; }
@@ -27,13 +22,13 @@ public class VenueTypeEntity
     public string Description { get; init; }
         
     [Required]
-    [Column("created_at")] 
+    [Column("created_at")]
     public DateTime CreatedAt { get; init; }
-
+    
     #region Navigation properties
-
-    public VenueCategoryEntity VenueCategory { get; set; }
-
+    
+    public ICollection<VenueTypeEntity> VenueTypes { get; init; } = new List<VenueTypeEntity>();
+    
     #endregion Navigation properties
 
 }

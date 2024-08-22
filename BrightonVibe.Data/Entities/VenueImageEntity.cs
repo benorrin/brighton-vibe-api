@@ -32,7 +32,10 @@ namespace BrightonVibe.Data.Entities
         [Column("created_at")]
         public DateTime CreatedAt { get; init; }
 
-        // Navigation properties
+        #region Navigation properties
+
         public VenueEntity Venue { get; init; }
+
+        #endregion
     }
 }

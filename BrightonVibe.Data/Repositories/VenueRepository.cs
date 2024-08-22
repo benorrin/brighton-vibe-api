@@ -30,7 +30,7 @@ public class VenueRepository : IVenueRepository
             Id = venueEntity.Id,
             Slug = venueEntity.Slug,
             Name = venueEntity.Name,
-            TypeId = venueEntity.TypeId,
+            VenueTypeId = venueEntity.VenueTypeId,
             Summary = venueEntity.Summary,
             Description = venueEntity.Description,
             Address = venueEntity.Address,
@@ -71,7 +71,7 @@ public class VenueRepository : IVenueRepository
             Id = venueEntity.Id,
             Slug = venueEntity.Slug,
             Name = venueEntity.Name,
-            TypeId = venueEntity.TypeId,
+            VenueTypeId = venueEntity.VenueTypeId,
             Summary = venueEntity.Summary,
             Description = venueEntity.Description,
             Address = venueEntity.Address,
@@ -104,7 +104,7 @@ public class VenueRepository : IVenueRepository
         var venueEntities = await _context.Venues
             .Include(venue => venue.VenueImages)
             .Include(venue => venue.VenueOpeningHours)
-            .Where(venue => venue.TypeId == venueTypeId)
+            .Where(venue => venue.VenueTypeId == venueTypeId)
             .ToListAsync();
     
         return venueEntities.Select(venueEntity => new Venue
@@ -112,7 +112,7 @@ public class VenueRepository : IVenueRepository
             Id = venueEntity.Id,
             Slug = venueEntity.Slug,
             Name = venueEntity.Name,
-            TypeId = venueEntity.TypeId,
+            VenueTypeId = venueEntity.VenueTypeId,
             Summary = venueEntity.Summary,
             Description = venueEntity.Description,
             Address = venueEntity.Address,

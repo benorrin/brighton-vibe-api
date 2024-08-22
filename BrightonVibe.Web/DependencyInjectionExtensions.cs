@@ -12,6 +12,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<AccountApplicationService>();
         services.AddScoped<VenueApplicationService>();
         services.AddScoped<VenueTypeApplicationService>();
+        services.AddScoped<VenueCategoryApplicationService>();
 
         // Domain Services
         services.AddScoped<IAccountDomainService, AccountDomainService>();
@@ -22,5 +23,6 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IVenueTypeRepository, VenueTypeRepository>();
         services.AddScoped<IVenueImageRepository, VenueImageRepository>();
         services.AddScoped<IVenueOpeningHourRepository, VenueOpeningHourRepository>();
+        services.AddScoped<IVenueCategoryRepository, VenueCategoryRepository>();
     }
 }

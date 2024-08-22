@@ -22,8 +22,8 @@ namespace BrightonVibe.Data.Entities
         public string Name { get; init; }
         
         [Required]
-        [Column("type_id")]
-        public Guid TypeId { get; init; }
+        [Column("venue_type_id")]
+        public Guid VenueTypeId { get; init; }
         
         [Required]
         [Column("summary")]
@@ -61,8 +61,11 @@ namespace BrightonVibe.Data.Entities
         [Column("facebook")]
         public string? Facebook { get; init; }
 
-        // Navigation properties
+        #region Navigation properties
+
         public ICollection<VenueImageEntity> VenueImages { get; set; }
         public ICollection<VenueOpeningHourEntity> VenueOpeningHours { get; set; }
+
+        #endregion
     }
 }
