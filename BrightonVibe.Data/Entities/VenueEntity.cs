@@ -61,6 +61,10 @@ namespace BrightonVibe.Data.Entities
         [Column("facebook")]
         public string? Facebook { get; init; }
 
+        [Required]
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+
         #region Navigation properties
 
         public ICollection<VenueImageEntity> VenueImages { get; set; }
