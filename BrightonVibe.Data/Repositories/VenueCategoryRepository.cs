@@ -42,4 +42,25 @@ public class VenueCategoryRepository : IVenueCategoryRepository
             CreatedAt = venueCategory.CreatedAt
         };
     }
+
+    public async Task<VenueCategory?> GetVenueCategoryByIdAsync(Guid venueCategoryId)
+    {
+        var venueCategory = await _context
+            .VenueCategories
+            .SingleOrDefaultAsync(venueCategory => venueCategory.Id == venueCategoryId);
+
+        if (venueCategory is null)
+        {
+            return null;
+        }
+
+        return new VenueCategory
+        {
+            Id = venueCategory.Id,
+            Slug = venueCategory.Slug,
+            Name = venueCategory.Name,
+            Description = venueCategory.Description,
+            CreatedAt = venueCategory.CreatedAt
+        };
+    }
 }

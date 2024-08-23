@@ -35,6 +35,7 @@ public class VenueTypeRepository : IVenueTypeRepository
         return new VenueType
         {
             Id = venueType.Id,
+            VenueCategoryId = venueType.VenueCategoryId,
             Slug = venueType.Slug,
             Name = venueType.Name,
             Description = venueType.Description,
