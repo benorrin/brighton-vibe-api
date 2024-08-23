@@ -73,12 +73,20 @@ public class VenueCategoryApplicationService
         {
             var venues = await _venueRepository.GetVenuesByTypeIdAsync(venueType.Id, 4);
 
+            var venueCardsDto = venues
+                .Select(venue => new VenueCardDto
+                {
+                    Slug = venue.Slug,
+                    Name = venue.Name,
+                    VenueImages = venue.VenueImages
+                });
+
             var venueTypeSummaryDto = new VenueTypeSummaryDto
             {
                 Slug = venueType.Slug,
                 Name = venueType.Name,
                 Description = venueType.Description,
-                Venues = venues
+                Venues = venueCardsDto
             };
             
             venueTypesSummaryDto.Add(venueTypeSummaryDto);

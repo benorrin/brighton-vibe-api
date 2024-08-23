@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BrightonVibe.Application.DTOs;
 
-public class VenueDto
+public class VenueSummaryDto
 {
     public Guid Id { get; set; }
     public string Slug { get; set; }
@@ -24,5 +24,6 @@ public class VenueDto
     public string? Facebook { get; set; }
     public IEnumerable<VenueImage> VenueImages { get; set; }
     public IEnumerable<VenueOpeningHour> VenueOpeningHours { get; set; }
+    public IEnumerable<VenueCardDto> SimilarVenues { get; set; }
 
 }

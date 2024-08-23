@@ -3,11 +3,11 @@ using BrightonVibe.Application.Services;
 
 [ApiController]
 [Route("venue-types")]
-public class VenueTypesController : ControllerBase
+public class VenueTypeController : ControllerBase
 {
     private readonly VenueTypeApplicationService _venueTypeApplicationService;
 
-    public VenueTypesController(VenueTypeApplicationService venueTypeApplicationService)
+    public VenueTypeController(VenueTypeApplicationService venueTypeApplicationService)
     {
         _venueTypeApplicationService = venueTypeApplicationService;
     }

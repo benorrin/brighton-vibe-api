@@ -23,9 +23,9 @@ public class VenueCategorysController : ControllerBase
     [HttpGet("{venueCategorySlug}/summary")]
     public async Task<IActionResult> GetVenueCategorySummaryBySlugAsync(string venueCategorySlug)
     { 
-        var venueDto = await _venueCategoryApplicationService.GetVenueCategorySummaryBySlugAsync(venueCategorySlug);
+        var venueCategorySummaryDto = await _venueCategoryApplicationService.GetVenueCategorySummaryBySlugAsync(venueCategorySlug);
         
-        return Ok(venueDto);
+        return Ok(venueCategorySummaryDto);
     }
 
 }

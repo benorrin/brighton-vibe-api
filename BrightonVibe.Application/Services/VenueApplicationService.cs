@@ -28,19 +28,18 @@ public class VenueApplicationService
     }
 
     /// <summary>
-    /// Asynchronously retrieves the details of a venue by its slug.
-    /// 
-    /// This method fetches the venue's information and associated images from the repository. 
-    /// If the venue with the specified ID does not exist, it throws a <see cref="VenueNotFoundException"/>.
-    /// The venue images are collected and included in the result. If there are no images associated 
-    /// with the venue, the returned list of images in the <see cref="VenueDto"/> will be empty but not null.
-    /// 
-    /// <param name="venueId">The unique identifier of the venue to retrieve.</param>
-    /// <returns>A <see cref="VenueDto"/> containing the venue details and associated images.</returns>
-    /// <exception cref="VenueNotFoundException">Thrown when a venue with the specified ID is not found.</exception>
+    /// Asynchronously retrieves a venue summary by its slug, including its type, category, 
+    /// and similar venues. Throws exceptions if the venue, its type, or category is not found.
+    /// Maps the venue details into a VenueSummaryDto and returns it.
     /// </summary>
-    public async Task<VenueDto> GetVenueBySlugAsync(string venueSlug)
+    /// <param name="venueSlug">The slug of the venue to be retrieved.</param>
+    /// <returns>A task containing the VenueSummaryDto with venue details.</returns>
+    /// <exception cref="VenueNotFoundException">Thrown if the venue is not found.</exception>
+    /// <exception cref="VenueTypeNotFoundException">Thrown if the venue type is not found.</exception>
+    /// <exception cref="VenueCategoryNotFoundException">Thrown if the venue category is not found.</exception>
+    public async Task<VenueSummaryDto> GetVenueSummaryBySlugAsync(string venueSlug)
     {
+        // Get Venue
         var venue = await _venueRepository.GetVenueBySlugAsync(venueSlug);
         
         if (venue is null)
@@ -48,6 +47,7 @@ public class VenueApplicationService
             throw new VenueNotFoundException();
         }
 
+        // Get VenueType
         var venueType = await _venueTypeRepository.GetVenueTypeByIdAsync(venue.VenueTypeId);
 
         if (venue is null)
@@ -62,6 +62,7 @@ public class VenueApplicationService
             Description = venueType.Description
         };
 
+        // Get VenueCategory
         var venueCategory = await _venueCategoryRepository.GetVenueCategoryByIdAsync(venueType.VenueCategoryId);
 
         if (venueCategory is null)
@@ -71,12 +72,23 @@ public class VenueApplicationService
 
         var venueCategoryDto = new VenueCategoryDto
         {
-            Slug = venueType.Slug,
-            Name = venueType.Name,
-            Description = venueType.Description
+            Slug = venueCategory.Slug,
+            Name = venueCategory.Name,
+            Description = venueCategory.Description
         };
 
-        var venueDto = new VenueDto
+        // Get similar Venues
+        var similarVenues = await _venueRepository.GetVenuesByTypeIdAsync(venueType.Id, 4);
+
+        var similarVenuesDto = similarVenues
+            .Select(venue => new VenueCardDto
+            {
+                Slug = venue.Slug,
+                Name = venue.Name,
+                VenueImages = venue.VenueImages
+            });
+
+        var venueDto = new VenueSummaryDto
         {
             Id = venue.Id,
             Slug = venue.Slug,
@@ -92,12 +104,20 @@ public class VenueApplicationService
             Instagram = venue.Instagram,
             Facebook = venue.Facebook,
             VenueImages = venue.VenueImages,
-            VenueOpeningHours = venue.VenueOpeningHours
+            VenueOpeningHours = venue.VenueOpeningHours,
+            SimilarVenues = similarVenuesDto
         };
 
         return venueDto;
     }
-    
+
+    /// <summary>
+    /// Asynchronously retrieves a list of venues by their type ID. 
+    /// If no venues are found, a VenueNotFoundException is thrown.
+    /// </summary>
+    /// <param name="venueTypeId">The ID of the venue type to filter venues by.</param>
+    /// <returns>A task containing an IEnumerable of Venue objects.</returns>
+    /// <exception cref="VenueNotFoundException">Thrown if no venues are found for the given type ID.</exception>
     public async Task<IEnumerable<Venue>> GetVenuesByTypeIdAsync(Guid venueTypeId)
     {
         var venues = await _venueRepository.GetVenuesByTypeIdAsync(venueTypeId);
