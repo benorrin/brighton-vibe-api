@@ -8,4 +8,5 @@ public class VenueTypeSummaryDto
     public required string Name { get; set; }
     public required string Description { get; set; }
     public required IEnumerable<VenueCardDto> Venues { get; set; }
+    public VenueCategoryDto? VenueCategory { get; set; }
 }

@@ -11,6 +11,7 @@ public class VenueCardDto
 {
     public string Slug { get; set; }
     public string Name { get; set; }
+    public DateTime CreatedAt { get; set; }
     public IEnumerable<VenueImage> VenueImages { get; set; }
 
 }

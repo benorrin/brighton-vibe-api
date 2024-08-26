@@ -12,12 +12,12 @@ public class VenueTypeController : ControllerBase
         _venueTypeApplicationService = venueTypeApplicationService;
     }
 
-    [HttpGet("{venueTypeId:guid}")]
-    public async Task<IActionResult> GetVenueTypeByIdAsync(Guid venueTypeId)
+    [HttpGet("{venueTypeSlug}/summary")]
+    public async Task<IActionResult> GetVenueTypeSummaryBySlugAsync(string venueTypeSlug)
     { 
-        var venueDto = await _venueTypeApplicationService.GetVenueTypeByIdAsync(venueTypeId);
+        var venueTypeSummaryDto = await _venueTypeApplicationService.GetVenueTypeSummaryBySlugAsync(venueTypeSlug);
         
-        return Ok(venueDto);
+        return Ok(venueTypeSummaryDto);
     }
 
 }

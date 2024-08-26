@@ -42,7 +42,37 @@ public class VenueTypeRepository : IVenueTypeRepository
             CreatedAt = venueType.CreatedAt
         };
     }
-    
+
+    /// <summary>
+    /// Asynchronously retrieves a specific <see cref="VenueType"/> by its slug identifier.
+    /// </summary>
+    /// <param name="venueTypeSlug">The unique slug that identifies the venue type.</param>
+    /// <returns>
+    /// A <see cref="VenueType"/> object containing the details of the venue type if found; 
+    /// otherwise, returns <c>null</c> if no matching venue type exists.
+    /// </returns>
+    public async Task<VenueType?> GetVenueTypeBySlugAsync(string venueTypeSlug)
+    {
+        var venueType = await _context
+            .VenueTypes
+            .SingleOrDefaultAsync(venueType => venueType.Slug == venueTypeSlug);
+
+        if (venueType is null)
+        {
+            return null;
+        }
+
+        return new VenueType
+        {
+            Id = venueType.Id,
+            VenueCategoryId = venueType.VenueCategoryId,
+            Slug = venueType.Slug,
+            Name = venueType.Name,
+            Description = venueType.Description,
+            CreatedAt = venueType.CreatedAt
+        };
+    }
+
     /// <summary>
     /// Asynchronously retrieves a list of venue types associated with a specific venue category.
     /// </summary>
